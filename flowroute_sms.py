@@ -24,10 +24,7 @@ Subject: Text From {}
 Text Message: {}
 """.format(gmail_user, rcpt_to, from_num, body)
 
-        smtp.sendmail(
-                gmail_user,
-                rcpt_to,
-                message)
+        smtp.sendmail(gmail_user, rcpt_to, message)
         smtp.quit()
     except:
         print ("Something broke")
