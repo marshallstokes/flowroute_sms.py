@@ -31,7 +31,7 @@ Text Message: {}
         smtp.quit()
     except:
         print ("Something broke")
-    return jsonify({'task': 'task'}), 201
+    return jsonify({'task': 'complete'}), 201
 
 
 app.run(host="0.0.0.0",port=int("8080"))
