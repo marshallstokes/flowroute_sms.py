@@ -1,11 +1,15 @@
 #################
 from flask import Flask, request, jsonify
 import smtplib
+from configparser import ConfigParser
 
-gmail_user = 'user@gmail.com'
-gmail_passwd = 'PASSWORD'
+config = ConfigParser()
+config.read('flowroute_sms.ini')
 
-rcpt_to = 'XXXXXXX@vtext.com'
+web_port = config['general']['web_port']
+gmail_user = config['general']['gmail_user']
+gmail_passwd = config['general']['gmail_passwd']
+rcpt_to = config['general']['rcpt_to']
 
 app = Flask(__name__)
 
@@ -24,11 +28,15 @@ Subject: Text From {}
 Text Message: {}
 """.format(gmail_user, rcpt_to, from_num, body)
 
-        smtp.sendmail(gmail_user, rcpt_to, message)
+        smtp.sendmail(
+                gmail_user,
+                rcpt_to,
+                message)
         smtp.quit()
     except:
         print ("Something broke")
     return jsonify({'task': 'complete'}), 201
+    
 
-
-app.run(host="0.0.0.0",port=int("8080"))
+if __name__ == '__main__':
+    app.run(host="0.0.0.0",port=int(web_port))
