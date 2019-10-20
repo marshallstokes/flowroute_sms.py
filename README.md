@@ -16,6 +16,6 @@ If installing on Synology NAS; you will need:
 1) Install the PYthon 3 package
 2) Install PIP via CLI:\
 wget https://bootstrap.pypa.io/get-pip.py \
-python3 get-pip.py\
-python3 -m pip install flask\
+python3 get-pip.py \
+python3 -m pip install flask \
 
