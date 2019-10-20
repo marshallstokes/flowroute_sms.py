@@ -13,9 +13,9 @@ and run script via
 nohup /usr/local/bin/python3 flowroute_sms.py &
 
 If installing on Synology NAS; you will need:
-1) Install the PYthon 3 package
+1) Install the Python 3 package
 2) Install PIP via CLI:\
-wget https://bootstrap.pypa.io/get-pip.py \
-python3 get-pip.py \
-python3 -m pip install flask \
+# wget https://bootstrap.pypa.io/get-pip.py \
+# python3 get-pip.py \
+# python3 -m pip install flask 
 
