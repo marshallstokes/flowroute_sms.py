@@ -7,8 +7,8 @@ config = ConfigParser()
 config.read('flowroute_sms.ini')
 
 web_port = config['general']['web_port']
-gmail_user = config['general']['gmail_user']
-gmail_passwd = config['general']['gmail_passwd']
+smpt_user = config['general']['smtp_user']
+smtp_passwd = config['general']['smtp_passwd']
 rcpt_to = config['general']['rcpt_to']
 
 app = Flask(__name__)
@@ -19,17 +19,17 @@ def incomingsms():
     to_num = request.json['to']
     body = request.json['body']
     try:
-        smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-        smtp.login(gmail_user,gmail_passwd)
+        smtp = smtplib.SMTP_SSL(smtp_host, 465)
+        smtp.login(smtp_user,smtp_passwd)
         message = """From: <{}>
 To: <{}>
 Subject: Text From {}
 
 Text Message: {}
-""".format(gmail_user, rcpt_to, from_num, body)
+""".format(smtp_user, rcpt_to, from_num, body)
 
         smtp.sendmail(
-                gmail_user,
+                smtp_user,
                 rcpt_to,
                 message)
         smtp.quit()
